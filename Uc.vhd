@@ -29,10 +29,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Uc is
-    Port ( Op : in  STD_LOGIC_VECTOR(2 downto 0);
-           Op3 : in  STD_LOGIC_VECTOR(6 downto 0);
+    Port ( Op : in  STD_LOGIC_VECTOR(1 downto 0);
+           Op3 : in  STD_LOGIC_VECTOR(5 downto 0);
            Rts : in  STD_LOGIC;
-           AluOp : out  STD_LOGIC_VECTOR(6 downto 0));
+           AluOp : out  STD_LOGIC_VECTOR(5 downto 0));
 end Uc;
 
 architecture Behavioral of Uc is
@@ -48,7 +48,7 @@ begin
 					AluOp <= "000010";
 					when "000001" =>--AND
 					AluOp <= "000011";
-					when "000010" =>--AND
+					when "000010" =>--OR
 					AluOp <= "000100";
 					when "000101" =>--ANDN
 					AluOp <= "000101";
@@ -57,35 +57,7 @@ begin
 					when "000011" =>--XOR
 					AluOp <= "000111";
 					when "000111" =>--XNOR
-					AluOp <= "000011";
-					when "010000" =>--ADDcc
-					AluOp <= "001001";
-					when "001000" =>--ADDx
-					AluOp <= "000011";
-					when "011000" =>--ADDXcc
-					AluOp <= "001011";
-					when "010100" =>--SUBcc
-					AluOp <= "001100";
-					when "001100" =>--SUBx
-					AluOp <= "000011";
-					when "011100" =>--SUBXcc
-					AluOp <= "001110";
-					when "010001" =>--ANDcc
-					AluOp <= "001111";
-					when "010101" =>--ANDNcc
-					AluOp <= "010000";
-					when "010010" =>--ORcc
-					AluOp <= "010001";
-					when "010110" =>--ORNcc
-					AluOp <= "010010";
-					when "010011" =>--XORcc
-					AluOp <= "010011";
-					when "010111" =>--XNORcc
-					AluOp <= "010100";
-					when "100110" =>--SRL
-					AluOp <= "010101";
-					when "100101" =>--SLL
-					AluOp <= "010110";
+					AluOp <= "001000";
 					
 					when others => --not
 					AluOp <="000000";
