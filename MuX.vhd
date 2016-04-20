@@ -30,21 +30,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity MuX is
-    Port ( Rf : in  STD_LOGIC_VECTOR (5 downto 0);
-           SeUin : in  STD_LOGIC_VECTOR (5 downto 0);
+    Port ( Rf : in  STD_LOGIC_VECTOR (31 downto 0);
+           SeUin : in  STD_LOGIC_VECTOR (31 downto 0);
            Comp : in  STD_LOGIC;
-           OutALu : out  STD_LOGIC_VECTOR (5 downto 0));
+			  Rst : in STD_LOGIC;
+           OutALu : out  STD_LOGIC_VECTOR (31 downto 0));
 end MuX;
 
 architecture Behavioral of MuX is
 
 begin
-	process(Rf,SeUin,Comp)
+	process(Rf,SeUin,Comp,Rst)
 		begin
-			if(Comp = '0')then -- Indicando que si mi variable llamada Comp es un '0' 
-				OutAlu <= Rf; -- Deje pasar la variable Rf que haria referencia a la varible RS2 de mi Modulo Register file
-			else
-				OutAlu <=SeUin; ---- Indicando que si mi variable llamada Comp es un '1' , Deje pasar el Inmediato  de 13 bits que proviene del modulo Seu 
+		
+			if (Rst = '1')then
+				OutAlu <= "00000000000000000000000000000000";
+				else
+					if(Comp = '0')then -- Indicando que si mi variable llamada Comp es un '0' 
+						OutAlu <= Rf; -- Deje pasar la variable Rf que haria referencia a la varible RS2 de mi Modulo Register file
+						else
+							OutAlu <=SeUin; ---- Indicando que si mi variable llamada Comp es un '1' , Deje pasar el Inmediato  de 13 bits que proviene del modulo Seu 
+					end if;
 			end if;
 	end process;
 
