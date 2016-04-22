@@ -190,17 +190,17 @@ begin
 	
 	
 	Inst_Uc: Uc PORT MAP(
-		Op => DoutRegister(31 downto 30),
-		Op3 => DoutRegister(24 downto 19),
+		Op => DoutRegister(31 downto 29),
+		Op3 => DoutRegister(24 downto 18),
 		Rts => Rst,
 		AluOp =>DoutAluOp 
 	);
 
 
 	Inst_Register_file: Register_file PORT MAP(
-		Rs1 => DoutRegister(18 downto 14),
+		Rs1 => DoutRegister(18 downto 13),
 		Rs2 => DoutRegister(4 downto 0),
-		Rd => DoutRegister(29 downto 25),
+		Rd => DoutRegister(29 downto 24),
 		Dwr => Aluresult,
 		Rst => Rst,
 		Outrs1 => Doutrs1,
